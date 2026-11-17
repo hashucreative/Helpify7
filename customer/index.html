@@ -1,2 +1,305 @@
-<h1>Helpify</h1>
-<p>Your everyday helping service.</p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Helpify | Everyday Helping Services</title>
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Arial,sans-serif;background:#f5f7fb;color:#172033}
+button,input,select,textarea{font:inherit}
+header{background:#101c35;color:white;padding:18px 7%;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
+.logo{font-size:27px;font-weight:800;color:#76e6c2}
+.logo span{color:white}
+header a{color:white;text-decoration:none;margin-left:18px}
+.hero{padding:75px 8%;background:linear-gradient(100deg,#101c35ed,#101c3580),url("https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=1600") center/cover;color:white}
+.hero h1{font-size:clamp(36px,6vw,65px);max-width:650px;line-height:1.08}
+.hero p{font-size:18px;line-height:1.6;margin:20px 0;max-width:520px;color:#e2e9f5}
+.btn{display:inline-block;background:#70e4bd;color:#102039;border:0;border-radius:10px;padding:14px 22px;font-weight:bold;text-decoration:none;cursor:pointer}
+section{padding:55px 7%}
+.section-title{text-align:center;margin-bottom:30px}
+.section-title h2{font-size:32px;margin-bottom:9px}
+.section-title p{color:#69758b}
+.services{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px}
+.service{background:white;border-radius:17px;overflow:hidden;box-shadow:0 8px 25px #16213b10}
+.service img{width:100%;height:165px;object-fit:cover;display:block}
+.service-content{padding:18px}
+.service h3{margin-bottom:8px}
+.service p{color:#69758b;line-height:1.5;font-size:14px}
+.order-layout{display:grid;grid-template-columns:1.2fr .8fr;gap:25px;align-items:start}
+.panel{background:white;padding:25px;border-radius:18px;box-shadow:0 8px 25px #16213b10}
+.panel h2{margin-bottom:20px}
+label{display:block;font-weight:bold;font-size:14px;margin:14px 0 7px}
+input,select,textarea{width:100%;padding:13px;border:1px solid #dce2ec;border-radius:9px;background:#fff;color:#172033}
+textarea{min-height:100px;resize:vertical}
+input:focus,select:focus,textarea:focus{outline:2px solid #70e4bd;border-color:transparent}
+.submit{width:100%;margin-top:18px;background:#142442;color:white;border:0;padding:15px;border-radius:10px;font-weight:bold;cursor:pointer}
+.submit:disabled{opacity:.6;cursor:wait}
+.qr{text-align:center}
+.qr img{width:100%;max-width:245px;height:245px;object-fit:contain;border:1px solid #e4e8ef;border-radius:12px;padding:8px;margin:12px auto}
+.qr p{color:#69758b;line-height:1.5;font-size:14px}
+.notice{margin-top:15px;padding:12px;background:#f0faf6;border-radius:9px;color:#286c54;font-size:13px}
+#message{display:none;padding:15px;border-radius:10px;margin-top:15px;line-height:1.5}
+.success{background:#e7f8ef;color:#17623e}
+.error{background:#fff0f0;color:#9b2929}
+footer{background:#101c35;color:#dce5f3;padding:30px 7%;text-align:center;line-height:1.8}
+footer strong{color:#70e4bd}
+#passwordScreen{position:fixed;inset:0;background:#101c35;z-index:99;display:flex;align-items:center;justify-content:center;padding:20px}
+.login-box{background:white;padding:30px;border-radius:18px;width:100%;max-width:360px;text-align:center}
+.login-box h2{margin-bottom:10px}
+.login-box p{color:#69758b;margin-bottom:20px}
+.login-box button{width:100%;margin-top:12px}
+@media(max-width:750px){
+ .order-layout{grid-template-columns:1fr}
+ header{padding:16px 5%}
+ header nav{width:100%}
+ header a{margin:0 14px 0 0}
+ section{padding:42px 5%}
+ .hero{padding:60px 6%}
+}
+</style>
+</head>
+
+<body>
+
+<!-- SIMPLE PASSWORD SCREEN -->
+<div id="passwordScreen">
+  <div class="login-box">
+    <h2>Welcome to Helpify</h2>
+    <p>Enter the access password to continue.</p>
+    <input type="password" id="sitePassword" placeholder="Enter password">
+    <button class="btn" onclick="unlockSite()">Enter Helpify</button>
+    <p id="passwordError" style="color:#c0392b;margin-top:12px"></p>
+  </div>
+</div>
+
+<header>
+  <div class="logo">Help<span>ify.</span></div>
+  <nav>
+    <a href="#services">Services</a>
+    <a href="#order">Place an Order</a>
+    <a href="#payment">Payment</a>
+  </nav>
+</header>
+
+<div class="hero">
+  <h1>A helping hand, whenever you need one.</h1>
+  <p>Your everyday helping service. Simple, convenient help for everyday tasks.</p>
+  <a class="btn" href="#order">Request a Service</a>
+</div>
+
+<section id="services">
+  <div class="section-title">
+    <h2>What We Can Help With</h2>
+    <p>Choose a service and send us your request.</p>
+  </div>
+
+  <div class="services">
+    <article class="service">
+      <img src="https://images.unsplash.com/photo-1542838132-92c53300491e?w=700" alt="Shopping">
+      <div class="service-content"><h3>Buying from Shops</h3><p>Need something from a nearby shop? Send us your request.</p></div>
+    </article>
+
+    <article class="service">
+      <img src="https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=700" alt="Cleaning">
+      <div class="service-content"><h3>Shelf Cleaning</h3><p>Get help with everyday shelf cleaning.</p></div>
+    </article>
+
+    <article class="service">
+      <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=700" alt="Home delivery">
+      <div class="service-content"><h3>House-to-House Delivery</h3><p>Request help delivering items from one home to another.</p></div>
+    </article>
+
+    <article class="service">
+      <img src="https://images.unsplash.com/photo-1523413651479-597eb2da0ad6?w=700" alt="Home cleaning">
+      <div class="service-content"><h3>Stair Rail Wiping</h3><p>Help with wiping and cleaning stair railings.</p></div>
+    </article>
+
+    <article class="service">
+      <img src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=700" alt="Room">
+      <div class="service-content"><h3>Door & Window Cleaning</h3><p>Request help cleaning doors and windows.</p></div>
+    </article>
+
+    <article class="service">
+      <img src="https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=700" alt="Vehicle">
+      <div class="service-content"><h3>Bike Washing</h3><p>Request a bike-washing service.</p></div>
+    </article>
+
+    <article class="service">
+      <img src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?w=700" alt="Room cleaning">
+      <div class="service-content"><h3>Whole Room Cleaning</h3><p>Get help with cleaning and tidying a room.</p></div>
+    </article>
+
+    <article class="service">
+      <img src="https://images.unsplash.com/photo-1494438639946-1ebd1d20bf85?w=700" alt="Organizing">
+      <div class="service-content"><h3>Organizing Help</h3><p>Help with arranging and organizing items.</p></div>
+    </article>
+
+    <article class="service">
+      <img src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?w=700" alt="Relaxation service">
+      <div class="service-content"><h3>Massage Service</h3><p>Ask us about availability and service details.</p></div>
+    </article>
+  </div>
+</section>
+
+<section id="order" style="background:#eaf0f8">
+  <div class="section-title">
+    <h2>Place Your Order</h2>
+    <p>Fill in the details. We'll receive your request.</p>
+  </div>
+
+  <div class="order-layout">
+    <div class="panel">
+      <h2>Order Details</h2>
+
+      <form id="orderForm">
+        <label for="customerName">Your Name</label>
+        <input id="customerName" type="text" required maxlength="70" placeholder="Enter your name">
+
+        <label for="customerPhone">Phone Number</label>
+        <input id="customerPhone" type="tel" required maxlength="15" placeholder="Enter your phone number">
+
+        <label for="service">Choose a Service</label>
+        <select id="service" required>
+          <option value="">Select a service</option>
+          <option>Buying from Shops</option>
+          <option>Shelf Cleaning</option>
+          <option>House-to-House Delivery</option>
+          <option>Stair Rail Wiping</option>
+          <option>Door & Window Cleaning</option>
+          <option>Bike Washing</option>
+          <option>Whole Room Cleaning</option>
+          <option>Organizing Help</option>
+          <option>Massage Service</option>
+        </select>
+
+        <label for="address">Address / Location</label>
+        <textarea id="address" required maxlength="500" placeholder="Enter where the service is needed"></textarea>
+
+        <label for="details">Additional Details</label>
+        <textarea id="details" maxlength="1000" placeholder="Tell us what you need (optional)"></textarea>
+
+        <button class="submit" id="submitButton" type="submit">Send Order Request</button>
+        <div id="message"></div>
+      </form>
+    </div>
+
+    <div class="panel qr" id="payment">
+      <h2>Pay with QR</h2>
+      <img src="../famx-qr.png" alt="Helpify payment QR"
+           onerror="this.style.display='none';document.getElementById('qrError').style.display='block'">
+      <p id="qrError" style="display:none;color:#b33">QR image not found. Please upload famx-qr.png to the main repository folder.</p>
+      <p>Scan using a supported UPI app.</p>
+      <div class="notice">Please confirm the amount and payment details with Helpify before paying.</div>
+      <p style="margin-top:18px"><strong>Need help?</strong></p>
+      <p>Contact: 9150144123</p>
+      <p>Contact: 9342744908</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <strong>Helpify.</strong><br>
+  Your everyday helping service.<br>
+  © 2026 Helpify. All rights reserved.
+</footer>
+
+<!-- Firebase SDK -->
+<script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore-compat.js"></script>
+
+<script>
+// PASSWORD
+const SITE_PASSWORD = "hashu";
+
+function unlockSite(){
+  const entered = document.getElementById("sitePassword").value;
+  if(entered === SITE_PASSWORD){
+    document.getElementById("passwordScreen").style.display = "none";
+    sessionStorage.setItem("helpifyUnlocked","yes");
+  }else{
+    document.getElementById("passwordError").textContent = "Incorrect password. Try again.";
+  }
+}
+
+if(sessionStorage.getItem("helpifyUnlocked") === "yes"){
+  document.getElementById("passwordScreen").style.display = "none";
+}
+
+// FIREBASE CONFIGURATION
+// Replace these example values with your Firebase project's Web App configuration.
+const firebaseConfig = {
+  apiKey: "PASTE_YOUR_API_KEY",
+  authDomain: "PASTE_YOUR_PROJECT.firebaseapp.com",
+  projectId: "PASTE_YOUR_PROJECT_ID",
+  storageBucket: "PASTE_YOUR_PROJECT.appspot.com",
+  messagingSenderId: "PASTE_YOUR_MESSAGING_SENDER_ID",
+  appId: "PASTE_YOUR_APP_ID"
+};
+
+let db = null;
+
+try {
+  if(firebaseConfig.apiKey !== "PASTE_YOUR_API_KEY" &&
+     firebaseConfig.projectId !== "PASTE_YOUR_PROJECT_ID"){
+    firebase.initializeApp(firebaseConfig);
+    db = firebase.firestore();
+  }
+} catch(error) {
+  console.error("Firebase setup error:", error);
+}
+
+// ORDER SUBMISSION
+const form = document.getElementById("orderForm");
+const message = document.getElementById("message");
+const submitButton = document.getElementById("submitButton");
+
+form.addEventListener("submit", async function(event){
+  event.preventDefault();
+
+  if(!db){
+    showMessage("Firebase is not connected yet. Add your Firebase configuration first.", false);
+    return;
+  }
+
+  const order = {
+    name: document.getElementById("customerName").value.trim(),
+    phone: document.getElementById("customerPhone").value.trim(),
+    service: document.getElementById("service").value,
+    address: document.getElementById("address").value.trim(),
+    details: document.getElementById("details").value.trim(),
+    status: "New",
+    createdAt: firebase.firestore.FieldValue.serverTimestamp()
+  };
+
+  if(!order.name || !order.phone || !order.service || !order.address){
+    showMessage("Please complete all required fields.", false);
+    return;
+  }
+
+  submitButton.disabled = true;
+  submitButton.textContent = "Sending...";
+
+  try{
+    await db.collection("orders").add(order);
+    showMessage("Your order request has been received successfully! Helpify will contact you soon.", true);
+    form.reset();
+  }catch(error){
+    console.error(error);
+    showMessage("We couldn't send your order. Please check your internet connection and try again.", false);
+  }finally{
+    submitButton.disabled = false;
+    submitButton.textContent = "Send Order Request";
+  }
+});
+
+function showMessage(text, success){
+  message.textContent = text;
+  message.className = success ? "success" : "error";
+  message.style.display = "block";
+}
+</script>
+
+</body>
+</html>
